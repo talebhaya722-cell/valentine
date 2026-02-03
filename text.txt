@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Valentine 💖</title>
+
+<style>
+body {
+    background: linear-gradient(to bottom, #ffd6e8, #ffb6d5);
+    font-family: "Arial", sans-serif;
+    text-align: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.heart {
+    width: 280px;
+    height: 250px;
+    background: pink;
+    position: relative;
+    margin: 80px auto 40px;
+    transform: rotate(-45deg);
+    animation: pulse 1.5s infinite;
+}
+
+.heart:before,
+.heart:after {
+    content: "";
+    width: 280px;
+    height: 250px;
+    background: pink;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.heart:before {
+    top: -140px;
+    left: 0;
+}
+
+.heart:after {
+    left: 140px;
+    top: 0;
+}
+
+.text {
+    position: absolute;
+    width: 220px;
+    top: 60px;
+    left: 30px;
+    transform: rotate(45deg);
+    font-size: 16px;
+    color: #b30059;
+    font-weight: bold;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#yesBtn {
+    background: #ff4d94;
+    color: white;
+}
+
+#noBtn {
+    background: #aaa;
+    color: white;
+}
+
+#message {
+    font-size: 26px;
+    color: #b30059;
+    margin-top: 20px;
+    display: none;
+    font-weight: bold;
+}
+
+.balloon {
+    position: absolute;
+    width: 40px;
+    height: 55px;
+    background: pink;
+    border-radius: 50%;
+    animation: float 5s linear infinite;
+}
+
+@keyframes pulse {
+    0% { transform: rotate(-45deg) scale(1); }
+    50% { transform: rotate(-45deg) scale(1.05); }
+    100% { transform: rotate(-45deg) scale(1); }
+}
+
+@keyframes float {
+    from { bottom: -60px; }
+    to { bottom: 110%; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="heart">
+    <div class="text">
+        Happy 1 year and 1 month my love 💕<br><br>
+        Will you make this day even more special and be my Valentine?
+    </div>
+</div>
+
+<div class="buttons">
+    <button id="yesBtn">Yes 💖</button>
+    <button id="noBtn">No 🙃</button>
+</div>
+
+<div id="message">I love you Fares 💗🎈</div>
+
+<script>
+let noBtn = document.getElementById("noBtn");
+let yesBtn = document.getElementById("yesBtn");
+let message = document.getElementById("message");
+
+let size = 1;
+
+noBtn.addEventListener("click", function() {
+    size -= 0.1;
+    if (size <= 0.3) {
+        noBtn.style.display = "none";
+    }
+    noBtn.style.transform = "scale(" + size + ")";
+});
+
+yesBtn.addEventListener("click", function() {
+    message.style.display = "block";
+    createBalloons();
+});
+
+function createBalloons() {
+    for (let i = 0; i < 25; i++) {
+        let balloon = document.createElement("div");
+        balloon.className = "balloon";
+        balloon.style.left = Math.random() * 100 + "vw";
+        balloon.style.animationDuration = (3 + Math.random() * 3) + "s";
+        balloon.style.background = randomColor();
+        document.body.appendChild(balloon);
+    }
+}
+
+function randomColor() {
+    let colors = ["#ff4d94", "#ff99cc", "#ff66b2", "#ff3385", "#ffcce6"];
+    return colors[Math.floor(Math.random() * colors.length)];
+}
+</script>
+
+</body>
+</html>
